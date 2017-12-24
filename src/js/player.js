@@ -1,0 +1,49 @@
+const player = document.querySelector('.player');
+const video = document.querySelector('.viewer');
+const progress = player.querySelector('.progress');
+const progressBar = player.querySelector('.progress__filled');
+
+const toggle = player.querySelector('.toggle');
+const skipButtons = player.querySelectorAll('[data-skip]');
+const ranges = player.querySelectorAll('.player__slider');
+
+//toggles the video between pause and play
+function togglePlay() {
+  const method = video.paused ? 'play' : 'pause';
+  video[method]();
+}
+
+//updates the play button icon
+function updateButton() {
+  const icon = this.paused ? '▶' : '❚❚';
+  toggle.textContent = icon; //changes the icon of the button
+}
+
+//skips video
+function skip() {
+  video.currentTime += parseFloat(this.dataset.skip);
+}
+
+//updates volume and playbackRate
+function handleRangeUpdate() {
+  video[this.name] = this.value;
+}
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${percent}%`;
+}
+
+//eventlistener for video to play/pause
+video.addEventListener('click', togglePlay);
+//eventlistener for video to update play/pause icon
+video.addEventListener('play', updateButton);
+video.addEventListener('pause', updateButton);
+//eventlistener for updating video progress
+video.addEventListener('timeupdate', handleProgress);
+//eventlistener for play/pause button to play/pause
+toggle.addEventListener('click', togglePlay);
+//eventlistener for skip buttons to skip
+skipButtons.forEach(button => button.addEventListener('click', skip));
+//eventlistener for progress slider
+ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate))
