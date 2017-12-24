@@ -1,12 +1,41 @@
-.progress {
+.player {
   width: 1000px;
+  position: relative;
+}
+.viewer {
+  width: 100%;
+  z-index: -1;
+}
+.player__controls {
+  margin: 0px;
+  width: 100%;
   height: 30px;
+  position: absolute;
+  background-color: rgba(0, 0, 0 , 0.5);
+  bottom: 3px;
+  z-index: 1;
+}
+.player__button {
+  width: 50px;
+  margin: 0px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+}
+.player__slider {
+  height: 10px;
+}
+.progress {
+  width: auto;
+  margin: 0px;
+  height: 10px;
   background-color: rgba(0, 0, 0, .2);
   position: relative;
   display: flex;
 }
 .progress__filled {
   height: 100%;
-  background-color: blue;
+  background-color: #0f6efc;
   flex-basis: 0%;
 }
