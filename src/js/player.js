@@ -51,7 +51,7 @@ ranges.forEach(range => range.addEventListener('change', handleRangeUpdate))
 ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate))
 //eventlistener for scrubbing throught the video on progress bar
 let mousedown = false
-progress.addEventListener('mousedown', () => mousedown = true)
-progress.addEventListener('mouseup', () => mousedown = false)
 progress.addEventListener('click', scrub)
 progress.addEventListener('mousemove', (e) => mousedown && scrub(e))
+progress.addEventListener('mousedown', () => mousedown = true)
+progress.addEventListener('mouseup', () => mousedown = false)
